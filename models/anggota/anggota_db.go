@@ -11,7 +11,7 @@ type Anggota struct {
 	CreatedAt time.Time      `json:"createdAt"`
 	UpdatedAt time.Time      `json:"updatedAt"`
 	DeletedAt gorm.DeletedAt `gorm:"index" json:"deletedAt"`
-	Nama      string         `json:"name"`
+	Nama      string         `json:"nama"`
 	NomorHp   string         `json:"nomorHp"`
 	Password  string         `json:"password"`
 	Pekerjaan string		 `json:"pekerjaan"`

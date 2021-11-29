@@ -2,6 +2,7 @@ package configs
 
 import (
 	"arisan.com/arisan/models/anggota"
+	"arisan.com/arisan/models/pembayaran"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -20,5 +21,5 @@ func ConnectDB() {
 }
 
 func Migration() {
-	DB.AutoMigrate(anggota.Anggota{})
+	DB.AutoMigrate(anggota.Anggota{}, pembayaran.Pembayaran{})
 }
