@@ -1,4 +1,4 @@
-package anggota
+package pemenang
 
 import (
 	"time"
@@ -6,14 +6,9 @@ import (
 	"gorm.io/gorm"
 )
 
-type Anggota struct {
-	gorm.Model
+type Arisan struct {
 	Id        uint           `gorm:"primaryKey" json:"id"`
 	CreatedAt time.Time      `json:"createdAt"`
 	UpdatedAt time.Time      `json:"updatedAt"`
 	DeletedAt gorm.DeletedAt `gorm:"index" json:"deletedAt"`
-	Nama      string         `json:"nama"`
-	NomorHp   string         `json:"nomorHp"`
-	Password  string         `json:"password"`
-	Pekerjaan string		 `json:"pekerjaan"`
 }

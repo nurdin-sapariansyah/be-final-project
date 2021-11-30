@@ -10,7 +10,7 @@ import (
 )
 
 func LoginController(c echo.Context) error {
-	
+
 	var anggota anggota.Anggota
 	c.Bind(&anggota)
 
