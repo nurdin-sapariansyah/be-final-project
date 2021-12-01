@@ -13,6 +13,5 @@ type Undian struct {
 	UpdatedAt  time.Time      `json:"updatedAt"`
 	DeletedAt  gorm.DeletedAt `gorm:"index" json:"deletedAt"`
 	JumlahDraw int            `json:"jumlahDraw"`
-	ArisanRefer int			  `json:"arisan"`
-	Arisan      arisan.Arisan `gorm:"foreignKey:ArisanRefer"`
+	Arisan     arisan.Arisan `json:"arisan"`
 }

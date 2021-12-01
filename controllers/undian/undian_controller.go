@@ -9,7 +9,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func CreUndianController(c echo.Context) error {
+func CreateUndianController(c echo.Context) error {
 	var newUndian undian.Undian
 	c.Bind(&newUndian)
 
@@ -34,7 +34,7 @@ func CreUndianController(c echo.Context) error {
 func GetUndianController(c echo.Context) error {
 	var undian []undian.Undian
 
-	result := configs.DB.Find(&undian)
+	result := configs.DB.Preload("Arisan").Find(&undian)
 
 	if result.Error != nil {
 		return c.JSON(http.StatusInternalServerError, response.BaseResponse{

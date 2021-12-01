@@ -2,6 +2,7 @@ package arisan
 
 import (
 	"net/http"
+	"strconv"
 
 	"arisan.com/arisan/configs"
 	"arisan.com/arisan/models/arisan"
@@ -48,6 +49,19 @@ func GetArisanController(c echo.Context) error {
 		http.StatusOK,
 		"success",
 		arisan,
+	}
+	return c.JSON(http.StatusOK, response)
+}
+
+func GetDetailArisanController(c echo.Context) error {
+	arisanId, _ := strconv.Atoi(c.Param("arisanId"))
+
+	var data = arisan.Arisan{} // DB
+
+	var response = response.BaseResponse{
+		arisanId,
+		"success",
+		data,
 	}
 	return c.JSON(http.StatusOK, response)
 }

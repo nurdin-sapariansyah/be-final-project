@@ -19,11 +19,12 @@ func New() *echo.Echo {
 
 	//arisan
 	e.GET("/arisan", arisan.GetArisanController)
-	e.POST("/new", arisan.CreatArisanController)
+	e.POST("/newArisan", arisan.CreatArisanController)
+	e.POST("/:arisanId", arisan.GetDetailArisanController)
 
 	//undian
 	e.GET("/undian", undian.GetUndianController)
-	e.POST("/create", undian.CreUndianController)
+	e.POST("/newUndian", undian.CreateUndianController)
 	
 	e.GET("/pembayaran", pembayaran.GetStatusPembayaranController)
 
