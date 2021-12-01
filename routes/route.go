@@ -5,11 +5,14 @@ import (
 	"arisan.com/arisan/controllers/arisan"
 	"arisan.com/arisan/controllers/pembayaran"
 	"arisan.com/arisan/controllers/undian"
+	"arisan.com/arisan/middlewares"
 	"github.com/labstack/echo/v4"
 )
 
 func New() *echo.Echo {
 	e := echo.New()
+
+	middlewares.LogMiddleware(e)
 
 	//routes
 	//anggota
