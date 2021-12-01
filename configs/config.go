@@ -4,6 +4,7 @@ import (
 	"arisan.com/arisan/models/anggota"
 	"arisan.com/arisan/models/arisan"
 	"arisan.com/arisan/models/pembayaran"
+	"arisan.com/arisan/models/undian"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -22,5 +23,9 @@ func ConnectDB() {
 }
 
 func Migration() {
-	DB.AutoMigrate(anggota.Anggota{}, pembayaran.Pembayaran{}, arisan.Arisan{})
+	DB.AutoMigrate(
+		anggota.Anggota{},
+		arisan.Arisan{},
+		undian.Undian{},
+	pembayaran.Pembayaran{})
 }
