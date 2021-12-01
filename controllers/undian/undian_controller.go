@@ -1,19 +1,19 @@
-package arisan
+package undian
 
 import (
 	"net/http"
 
 	"arisan.com/arisan/configs"
-	"arisan.com/arisan/models/arisan"
 	"arisan.com/arisan/models/response"
+	"arisan.com/arisan/models/undian"
 	"github.com/labstack/echo/v4"
 )
 
-func CreatArisanController(c echo.Context) error {
-	var newArisan arisan.Arisan
-	c.Bind(&newArisan)
+func CreUndianController(c echo.Context) error {
+	var newUndian undian.Undian
+	c.Bind(&newUndian)
 
-	result := configs.DB.Create(&newArisan)
+	result := configs.DB.Create(&newUndian)
 
 	if result.Error != nil {
 		return c.JSON(http.StatusInternalServerError, response.BaseResponse{
@@ -26,15 +26,15 @@ func CreatArisanController(c echo.Context) error {
 	var response = response.BaseResponse{
 		http.StatusOK,
 		"success",
-		newArisan,
+		newUndian,
 	}
 	return c.JSON(http.StatusOK, response)
 }
 
-func GetArisanController(c echo.Context) error {
-	var arisan []arisan.Arisan
+func GetUndianController(c echo.Context) error {
+	var undian []undian.Undian
 
-	result := configs.DB.Preload("Anggota").Find(&arisan)
+	result := configs.DB.Find(&undian)
 
 	if result.Error != nil {
 		return c.JSON(http.StatusInternalServerError, response.BaseResponse{
@@ -47,7 +47,7 @@ func GetArisanController(c echo.Context) error {
 	var response = response.BaseResponse{
 		http.StatusOK,
 		"success",
-		arisan,
+		undian,
 	}
 	return c.JSON(http.StatusOK, response)
 }

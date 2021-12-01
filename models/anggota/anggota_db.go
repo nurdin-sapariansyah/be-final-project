@@ -7,7 +7,6 @@ import (
 )
 
 type Anggota struct {
-	gorm.Model
 	Id        uint           `gorm:"primaryKey" json:"id"`
 	CreatedAt time.Time      `json:"createdAt"`
 	UpdatedAt time.Time      `json:"updatedAt"`

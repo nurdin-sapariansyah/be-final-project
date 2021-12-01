@@ -8,7 +8,6 @@ import (
 )
 
 type Arisan struct {
-	gorm.Model
 	Id        uint           `gorm:"primaryKey" json:"id"`
 	CreatedAt time.Time      `json:"createdAt"`
 	UpdatedAt time.Time      `json:"updatedAt"`
@@ -18,5 +17,5 @@ type Arisan struct {
 	TotalDuit	  uint           `json:"totalDuit"`
 	JumlahAnggota int            `json:"jumlahAnggota"`
 	NominalIuran  int            `json:"nominalIuran"` 
-	Anggota []anggota.Anggota `gorm:"many2many:arisan_anggota;"`
+	Anggota []anggota.Anggota `gorm:"many2many:arisan_anggota;" json:"anggota"`
 }
