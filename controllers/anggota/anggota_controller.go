@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"arisan.com/arisan/configs"
+	"arisan.com/arisan/middlewares"
 	"arisan.com/arisan/models/anggota"
 	"arisan.com/arisan/models/response"
 	"github.com/labstack/echo/v4"
@@ -14,6 +15,14 @@ func LoginController(c echo.Context) error {
 	var anggota anggota.Anggota
 	c.Bind(&anggota)
 
+	if err := configs.DB.Where("email = ? AND password = ?", anggota.Email, anggota.Password).First(&anggota).Error; err != nil {
+		return c.JSON(http.StatusUnauthorized, response.BaseResponse{
+			http.StatusUnauthorized,
+			"Nomor HP dan Password tidak sesuai",
+			nil,
+		})
+	}
+
 	if anggota.Password == "" {
 		return c.JSON(http.StatusBadRequest, response.BaseResponse{
 			http.StatusBadRequest,
@@ -22,10 +31,23 @@ func LoginController(c echo.Context) error {
 		})
 	}
 
+	// generate token
+	token, err := middlewares.GenereteTokenJWT(int(anggota.Id))
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, response.BaseResponse{
+			http.StatusInternalServerError,
+			"Error ketika generate token JWT",
+			nil,
+		})
+	}
+
 	return c.JSON(http.StatusOK, response.BaseResponse{
 		http.StatusOK,
 		"succes",
-		anggota,
+		map[string]string{
+			"token": token,
+		},
 	})
 
 }
