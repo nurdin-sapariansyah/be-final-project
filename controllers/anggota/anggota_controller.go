@@ -15,7 +15,7 @@ func LoginController(c echo.Context) error {
 	var anggota anggota.Anggota
 	c.Bind(&anggota)
 
-	if err := configs.DB.Where("email = ? AND password = ?", anggota.Email, anggota.Password).First(&anggota).Error; err != nil {
+	if err := configs.DB.Where("nomor_hp = ? AND password = ?", anggota.NomorHp, anggota.Password).First(&anggota).Error; err != nil {
 		return c.JSON(http.StatusUnauthorized, response.BaseResponse{
 			http.StatusUnauthorized,
 			"Nomor HP dan Password tidak sesuai",

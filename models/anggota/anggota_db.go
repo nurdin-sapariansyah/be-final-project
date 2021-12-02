@@ -9,7 +9,7 @@ import (
 type Anggota struct {
 	Id        uint           `gorm:"primaryKey" json:"id"`
 	Nama      string         `json:"nama"`
-	Email   string         `json:"email"`
+	NomorHp   string         `json:"nomorHp"`
 	Password  string         `json:"password"`
 	Pekerjaan string		 `json:"pekerjaan"`
 	CreatedAt time.Time      `json:"createdAt"`
