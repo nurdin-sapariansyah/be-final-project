@@ -23,9 +23,7 @@ func New() *echo.Echo {
 	
 	//routes
 	//anggota
-	eAnggota := e.Group("/anggota")
-	eAnggota.Use(middleware.JWTWithConfig(config))
-	eAnggota.GET("/", anggota.GetAnggotaController)
+	e.GET("/anggota", anggota.GetAnggotaController)
 	e.POST("/register", anggota.RegisterController)
 	e.POST("/login", anggota.LoginController)
 
